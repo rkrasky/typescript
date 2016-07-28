@@ -302,7 +302,7 @@ declare module PIXI {
         getBounds(): Rectangle;
         getLocalBounds(): Rectangle;
         toGlobal(position: Point): Point;
-        toLocal(position: Point, from: Point, point?: Point): Point;
+        toLocal(position: Point, from?: DisplayObject, point?: Point): Point;
         protected renderWebGL(renderer: WebGLRenderer): void;
         protected renderCanvas(renderer: CanvasRenderer): void;
         setParent(container: Container): Container;
@@ -1991,6 +1991,29 @@ declare module PIXI {
             refresh(): void;
 
             protected _onTexureUpdate(): void;
+
+        }
+        export class NineSlicePlane extends Plane {
+
+            constructor(texture: Texture, leftWidth?:number, topHeight?:number, rightWidth?:number, bottomHeight?:number);
+            leftWidth: number;
+            rightWidth: number;
+            topHeight: number;
+            bottomHeight: number;
+
+            protected _leftWidth:number;
+            protected _rightWidth:number;
+            protected _topHeight:number;
+            protected _bottomHeight:number;
+            protected _height:number;
+            protected _width:number;
+            protected _origHeight:number;
+            protected _origWidth:number;
+            protected _uvh:number;
+            protected _uvw:number;
+
+            updateHorizontalVertices(): void;
+            updateVerticalVertices(): void;
 
         }
         export class Rope extends Mesh {
